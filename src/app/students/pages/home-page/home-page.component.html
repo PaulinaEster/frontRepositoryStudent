@@ -1,0 +1,11 @@
+<div class="row" *ngIf="students.length > 0">
+  <app-student-list class="col-md-6" *ngFor="let stu of students" [student]="stu" (editItemEvent)="editStudent(stu)"
+    (deleteItemEvent)="onDeleteStudent(stu)" (detailsItem)="goToDetails(stu)">
+  </app-student-list>
+</div>
+<br>
+<div class="row" *ngIf="students.length <= 0">
+  <div class="alert alert-secondary" role="alert">
+    Sem estudantes cadastrados.
+  </div>
+</div>

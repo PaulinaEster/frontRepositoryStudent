@@ -1,0 +1,37 @@
+<br>
+<div class="row">
+  <div class="col-sm-7 m-2">
+    <div class="card text-center" >
+      <div class="card-header">
+        {{ student.department.departmentName }} - {{ student.department.location }}
+      </div> 
+      <div class="card-body">
+        <h5 class="card-title">{{student.name}}</h5>
+        <p class="card-text"> {{student.description}} </p> 
+      </div> 
+      <div class="card-footer text-muted">
+        {{student.email}}
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="col-sm-4 m-2">
+    <div class="card"> 
+      <div class="card-body">
+        <h5 class="card-title">Habilidades com {{student.department.departmentName}} </h5>
+        <div class="progress">
+          <div class="progress-bar bg-{{getStyle(student.percentage!)}}" role="progressbar" style="width: {{student.percentage}}%;" aria-valuenow="student?.percentage" aria-valuemin="0" aria-valuemax="100">{{student.percentage}}%</div>
+        </div>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item d-flex justify-content-between align-items-start" *ngFor="let sub of student.subjects" > 
+          <div class="">
+            <div class="fw-bold text-{{getStyle(sub.marksObtained)}}">{{sub.subjectName}}</div> 
+          </div>
+          <span class="badge bg-{{getStyle(sub.marksObtained)}} rounded-pill">{{sub.marksObtained}}%</span>
+        
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

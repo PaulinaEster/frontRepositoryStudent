@@ -1,0 +1,25 @@
+<br>
+<div class="col">
+  <div class="card">
+    <div class="card-body">
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" aria-label="Example with label" style="width: {{student!.percentage}}%;" aria-valuenow="student?.percentage" aria-valuemin="0" aria-valuemax="100">{{student!.percentage}}%</div>
+      </div>
+      <br>
+      <h5 class="card-title">{{student!.name}}</h5>
+      <p class="card-text">{{student!.description}}</p>
+      <div class="row"> <div class="col-sm-2"></div> </div> 
+      <div class="dropdown">
+        <button class="btn btn-outline-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="bi bi-gear-fill"></i>
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <button type="button" (click)="onDeleteStudent()"  class="dropdown-item" > <i class="bi bi-trash-fill m-2"></i>Delete</button></li>
+          <li><button class="dropdown-item" (click)="goToEdit()"><i class="bi bi-pencil-fill m-2"></i> Edit</button></li>
+          <li><button class="dropdown-item" (click)="goToDetails()"> <i class="bi bi-search m-2"></i>Details</button></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div> 

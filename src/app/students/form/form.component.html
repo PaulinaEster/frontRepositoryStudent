@@ -1,0 +1,79 @@
+<p>{{student.name}}</p>
+<p>{{student.email}}</p>
+<form class="row g-3" [formGroup]="formGeral">
+  <div class="col-md-6 ">
+    <label class="form-label">Name</label>
+    <input type="text" class="form-control" formControlName="name">
+    <h6 class="text-danger" *ngIf="formGeral.get('name')?.invalid"> O nome é obrigatorio. </h6>
+  </div>
+  <div class="col-md-6">
+    <label class="form-label">Email</label>
+    <input type="email" class="form-control" formControlName="email">
+    <h6 class="text-danger" *ngIf="formGeral.get('email')?.invalid"> Insira um email valido. </h6>
+  </div>
+  <div class="col-12">
+    <label class="form-label">Description</label>
+    <textarea type="text" class="form-control" rows="2"></textarea>
+  </div>
+
+</form>
+<form [formGroup]="departmentForm" class="row">
+  <div class="col-md-6">
+    <label class="form-label">Department name</label>
+    <input type="text" class="form-control" formControlName="departmentName">
+    <h6 class="text-danger"> {{formGeral.get('departmentName')?.invalid}} </h6>
+    <h6 class="text-danger" *ngIf="departmentForm.get('departmentName')?.invalid"> O nome de departamento é
+      obrigatório. </h6>
+  </div>
+  <div class="col-md-6">
+    <label class="form-label">Location</label>
+    <input type="text" class="form-control" formControlName="location">
+    <h6 class="text-danger" *ngIf="departmentForm.get('location')?.invalid"> A localização do departamento é
+      obrigatoria. </h6>
+  </div>
+</form>
+<form class="row" [formGroup]="subjectForm">
+  <div class="col-md-4">
+    <label class="form-label">Tecnologia</label>
+    <input type="text" class="form-control" formControlName="subjectName">
+    <h6 class="text-danger" *ngIf="subjectForm.get('subjectName')?.invalid"> Campo obrigatorio. </h6>
+  </div>
+  <div class="col-md-4">
+    <label class="form-label">Progresso</label>
+    <input type="number" class="form-control" formControlName="marksObtained">
+    <h6 class="text-danger" *ngIf="subjectForm.get('marksObtained')?.invalid"> Insira um valor valido (entre 0 e 100).
+    </h6>
+  </div>
+  <div class="col-md-4" *ngIf="student.subjects.length > 0">
+    <label class="form-label">Habilidades</label>
+    <ol class="list-group">
+      <li class="list-group-item d-flex justify-content-between align-items-start"
+        *ngFor="let sub of student.subjects;let i = index">
+
+        <i class="bi bi-x-circle-fill text-danger " (click)="getSubjectItemDelete(i)"></i>
+        <div class="ms-2 me-auto">
+          {{sub.subjectName}}
+        </div>
+        <span class="badge bg-primary rounded-pill">{{sub.marksObtained}}%</span>
+      </li>
+    </ol>
+    <br>
+    <br>
+  </div>
+  <div class="col-2 ms-2">
+    <br>
+    <button type="submit" class="btn btn-success" [disabled]="subjectForm.invalid" (click)="addSubjectItem()">add subject</button>
+  </div>
+</form>
+<div class="row">  
+  <div class="col-6">
+    <br>
+    <br>
+    <button type="submit" class="btn btn-primary" (click)="onSendForm()">{{isEdit ? 'Save' : 'Create Student'}}</button>
+  </div>
+  <div class="col-6" *ngIf="isEdit">
+    <br>
+    <br>
+    <button type="submit" class="btn btn-danger" (click)="onCancelEdit()">Cancel edit</button>
+  </div>
+</div>
